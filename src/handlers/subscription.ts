@@ -1,0 +1,74 @@
+import { Request, Response } from 'express';
+
+/**
+ * Subscription webhook handler
+ * Handles: subscription_created, subscription_renewed, subscription_changed
+ * 
+ * This handler is responsible for:
+ * - Provisioning access on creation
+ * - Updating entitlements on plan changes
+ * - Extending access on renewal
+ * - Processing metadata changes
+ */
+export function handleSubscriptionWebhook(req: Request, res: Response): void {
+  try {
+    const { id, event_type, content } = req.body;
+
+    console.log('='.repeat(50));
+    console.log('📦 Subscription Event Received');
+    console.log('Event ID:', id);
+    console.log('Event Type:', event_type);
+    console.log('Timestamp:', new Date().toISOString());
+    console.log('='.repeat(50));
+
+    const subscription = content?.subscription;
+
+    if (!subscription) {
+      console.warn('No subscription data in payload');
+      res.status(200).json({ received: true, warning: 'No subscription data' });
+      return;
+    }
+
+    // Handle subscription events
+    switch (event_type) {
+      case 'subscription_created':
+        console.log(`✅ New subscription created: ${subscription.id}`);
+        console.log(`   Customer ID: ${subscription.customer_id}`);
+        console.log(`   Plan ID: ${subscription.plan_id}`);
+        console.log(`   Status: ${subscription.status}`);
+        // TODO: Provision access/entitlements for the customer
+        break;
+
+      case 'subscription_renewed':
+        console.log(`🔄 Subscription renewed: ${subscription.id}`);
+        console.log(`   Customer ID: ${subscription.customer_id}`);
+        console.log(`   Next billing at: ${subscription.next_billing_at}`);
+        // TODO: Extend access period for the customer
+        break;
+
+      case 'subscription_changed':
+        console.log(`🔄 Subscription changed: ${subscription.id}`);
+        console.log(`   Customer ID: ${subscription.customer_id}`);
+        console.log(`   Plan ID: ${subscription.plan_id}`);
+        console.log(`   Status: ${subscription.status}`);
+        // TODO: Update entitlements based on plan changes
+        break;
+
+      default:
+        console.log(`ℹ️  Unhandled subscription event: ${event_type}`);
+    }
+
+    res.status(200).json({ 
+      received: true, 
+      event_id: id,
+      event_type,
+      subscription_id: subscription.id
+    });
+  } catch (error) {
+    console.error('❌ Error processing subscription webhook:', error);
+    res.status(500).json({ 
+      error: 'Internal server error',
+      message: error instanceof Error ? error.message : 'Unknown error'
+    });
+  }
+}
