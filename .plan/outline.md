@@ -1,4 +1,3 @@
-
 # **Chargebee + Hookdeck Event Gateway Tutorial Style Guide**
 
 This style guide defines how tutorials written collaboratively between Chargebee and Hookdeck should be structured, written, and formatted. It is based on Chargebee’s existing tutorial style, combined with Hookdeck’s technical writing preferences.
@@ -7,33 +6,33 @@ This style guide defines how tutorials written collaboratively between Chargebee
 
 ### **Overall tone**
 
-* Practical, direct, developer-focused.
+- Practical, direct, developer-focused.
 
-* Clear and instructional, not promotional.
+- Clear and instructional, not promotional.
 
-* Uses precise technical language without unnecessary jargon.
+- Uses precise technical language without unnecessary jargon.
 
-* Friendly but concise. Avoid overly casual or humorous phrasing.
+- Friendly but concise. Avoid overly casual or humorous phrasing.
 
-* Use active voice and present tense.
+- Use active voice and present tense.
 
   ### **Assumptions about the reader**
 
-* Intermediate developer comfortable with APIs, JSON, HTTP, and basic backend frameworks.
+- Intermediate developer comfortable with APIs, JSON, HTTP, and basic backend frameworks.
 
-* Not assumed to know webhook reliability patterns or event routing best practices.
+- Not assumed to know webhook reliability patterns or event routing best practices.
 
-* Not assumed to be deeply familiar with either Chargebee or Hookdeck.
+- Not assumed to be deeply familiar with either Chargebee or Hookdeck.
 
   ### **Voice characteristics**
 
-* Use “you” and “your application” to speak directly to the reader.
+- Use “you” and “your application” to speak directly to the reader.
 
-* Keep explanations crisp. If something needs more context, give it in one short paragraph.
+- Keep explanations crisp. If something needs more context, give it in one short paragraph.
 
-* Never use marketing terms like “seamless”, “powerful”, “effortless”, “revolutionary”.
+- Never use marketing terms like “seamless”, “powerful”, “effortless”, “revolutionary”.
 
-* No product comparisons or persuasion. Let the tutorial stand on its technical value.
+- No product comparisons or persuasion. Let the tutorial stand on its technical value.
 
 # **2. Structure of the Tutorial**
 
@@ -50,10 +49,9 @@ Chargebee tutorials follow a consistent structure. We adopt the same structure h
 4. **Architecture Overview**
 
 5. **Step-by-Step Setup**
+   - Programmatic setup of Chargebee webhook endpoint
 
-   * Programmatic setup of Chargebee webhook endpoint
-
-   * Programmatic setup of Hookdeck Event Gateway Connections
+   - Programmatic setup of Hookdeck Event Gateway Connections
 
 6. **Implementing Handlers (by event group)**
 
@@ -69,21 +67,21 @@ Chargebee tutorials follow a consistent structure. We adopt the same structure h
 
     ### **Formatting conventions**
 
-* Use H2/H3 headings consistently.
+- Use H2/H3 headings consistently.
 
-* Short paragraphs.
+- Short paragraphs.
 
-* Numbered lists for sequential steps.
+- Numbered lists for sequential steps.
 
-* Bulleted lists for explanations or options.
+- Bulleted lists for explanations or options.
 
-* Use code fences for all code samples:
+- Use code fences for all code samples:
 
-* Show one runnable example at a time—avoid large code dumps.
+- Show one runnable example at a time—avoid large code dumps.
 
-* Use screenshots sparingly and always include a short caption:
+- Use screenshots sparingly and always include a short caption:
 
-   *“Event delivery in the Hookdeck Event Gateway dashboard.”*
+  _“Event delivery in the Hookdeck Event Gateway dashboard.”_
 
 # **3. Technical Conventions and Terminology**
 
@@ -91,41 +89,41 @@ Chargebee tutorials follow a consistent structure. We adopt the same structure h
 
 Use their canonical terms:
 
-* “Webhook Endpoint”
+- “Webhook Endpoint”
 
-* “Test Site” / “Live Site”
+- “Test Site” / “Live Site”
 
-* “Event Payload”
+- “Event Payload”
 
-* “Subscription Renewal”
+- “Subscription Renewal”
 
-* “Customer Record”
+- “Customer Record”
 
-* “Payment Intent”
+- “Payment Intent”
 
-* “Event Type”
+- “Event Type”
 
   ### **Hookdeck Event Gateway terminology**
 
 Use these terms consistently:
 
-* **Connection** — the top-level object that defines routing
+- **Connection** — the top-level object that defines routing
 
-* **Source** — where events originate (Chargebee)
+- **Source** — where events originate (Chargebee)
 
-* **Destination** — where events are forwarded (your backend endpoint)
+- **Destination** — where events are forwarded (your backend endpoint)
 
-* **Filter** — optional condition inside a Connection (e.g., event_type starts with subscription_)
+- **Filter** — optional condition inside a Connection (e.g., event*type starts with subscription*)
 
-* **Delivery Attempt**
+- **Delivery Attempt**
 
-* **History**
+- **History**
 
-* **Retry**
+- **Retry**
 
-* **Replay**
+- **Replay**
 
-* **Dashboard** (not “Console”)
+- **Dashboard** (not “Console”)
 
   ### **Important**
 
@@ -135,21 +133,21 @@ There is **no separate “Route” object**.
 
 All tutorial text should use:
 
-* “Create a Connection”
+- “Create a Connection”
 
-* “Configure a Connection to forward…”
+- “Configure a Connection to forward…”
 
-* “Each Connection handles specific event types”
+- “Each Connection handles specific event types”
 
   ### **Language conventions**
 
-* Use “Basic Auth” (correct)
+- Use “Basic Auth” (correct)
 
-* Use “idempotent” for repeated-safe API calls
+- Use “idempotent” for repeated-safe API calls
 
-* Use “event-driven” (hyphenated)
+- Use “event-driven” (hyphenated)
 
-* Avoid phrases like “next-gen”, “modernize”, “synergy”
+- Avoid phrases like “next-gen”, “modernize”, “synergy”
 
 # **4. Writing Style Do’s and Don’ts**
 
@@ -185,25 +183,83 @@ All tutorial text should use:
 
 # **5. Special Considerations for This Collaboration**
 
-* Focus the tutorial on **subscription lifecycle**, **customer updates**, and **payment succeeded** events (based on Chargebee’s real usage data).
+- Focus the tutorial on **subscription lifecycle**, **customer updates**, and **payment succeeded** events (based on Chargebee’s real usage data).
 
-* Mention payment failure/dunning only as a small optional extension.
+- Mention payment failure/dunning only as a small optional extension.
 
-* Emphasize:
+- Emphasize:
+  - Reliability
 
-  * Reliability
+  - Observability
 
-  * Observability
+  - Testing
 
-  * Testing
+  - Idempotent setup
 
-  * Idempotent setup
+  - Clean separation of concerns
 
-  * Clean separation of concerns
+- All screenshots should be the **Hookdeck Event Gateway dashboard**.
 
-* All screenshots should be the **Hookdeck Event Gateway dashboard**.
+- All examples should be runnable, minimal, and realistic.
 
-* All examples should be runnable, minimal, and realistic.
+# **6. Code Presentation Guidelines for Tutorials**
+
+When writing tutorials using this codebase, follow these guidelines to balance clarity with completeness:
+
+### **Show Simplified Examples in Tutorial**
+
+- Use `ESSENTIAL_WEBHOOK_EVENTS` constant (6 events) in tutorial code examples
+- Reference that the full production implementation uses `ALL_WEBHOOK_EVENTS` (24 events)
+- Link to the complete GitHub repository for full implementation details
+
+### **Code Snippet Strategy**
+
+**Show complete code for:**
+
+- Handler patterns (customer, subscription, payment handlers are already tutorial-ready)
+- Connection filter rules (show one complete example)
+- Express routing setup (`src/index.ts` - entire file is appropriate)
+
+**Show simplified/partial code for:**
+
+- Event type lists (show 5-6 essential events, mention full list in repo)
+- Error handling patterns (show basic pattern, reference production version)
+- Form-data encoding logic (summarize as "helper function", link to implementation)
+- TypeScript type definitions (show key interfaces only)
+
+### **Reference Pattern**
+
+Use this phrasing when showing simplified code:
+
+> "This example shows the essential event types. The [complete implementation](REPO_URL) includes all 24 Chargebee webhook events for production use."
+
+Or for complex utilities:
+
+> "The setup script uses a helper function to handle API requests. See the [full implementation](REPO_URL) in `scripts/shared.ts` for details."
+
+### **Tutorial-Friendly Features Already in Codebase**
+
+These files/functions are tutorial-ready as-is:
+
+- **Handler functions** - All three handlers have clear documentation and focused logic
+- **Express setup** (`src/index.ts`) - Clean, minimal, well-commented
+- **Connection definitions** - Declarative and easy to understand
+- **Constants** - `ESSENTIAL_WEBHOOK_EVENTS` and `ALL_WEBHOOK_EVENTS` clearly separated
+
+### **Code Example Length Guidelines**
+
+- **Inline examples**: 10-20 lines maximum
+- **Full code blocks**: 30-50 lines maximum
+- **When longer**: Extract key concepts, show structure, link to complete file
+
+### **Comment Style in Tutorial Code**
+
+Tutorial code examples should include:
+
+- Brief explanatory comments before key operations
+- Inline comments for non-obvious logic
+- "TUTORIAL NOTE" comments already in handlers - reference these
+- Links to relevant documentation when introducing new concepts
 
 # **Full Tutorial Outline**
 
@@ -211,19 +267,19 @@ Below is the full outline you can share with Chargebee as the proposed structure
 
 ## Reliable Subscription & Customer Automation with Chargebee Webhooks and the Hookdeck Event Gateway
 
-*(Proposed Collaborative Tutorial Outline)*
+_(Proposed Collaborative Tutorial Outline)_
 
 ### 1. Introduction
 
 A short overview covering:
 
-* What this tutorial teaches
+- What this tutorial teaches
 
-* Why subscription, customer, and payment events form the core of Chargebee automation
+- Why subscription, customer, and payment events form the core of Chargebee automation
 
-* What reliability challenges developers commonly face
+- What reliability challenges developers commonly face
 
-* How the Hookdeck Event Gateway fits into the workflow
+- How the Hookdeck Event Gateway fits into the workflow
 
 Example high-level architecture:
 
@@ -235,15 +291,15 @@ Chargebee → Hookdeck Event Gateway → Application Endpoints
 
 List the minimal requirements:
 
-* Chargebee test site
+- Chargebee test site
 
-* Hookdeck account with Event Gateway enabled
+- Hookdeck account with Event Gateway enabled
 
-* Node.js (or Python) for code examples
+- Node.js (or Python) for code examples
 
-* ngrok or localhost tunneling if applicable
+- ngrok or localhost tunneling if applicable
 
-* Basic understanding of HTTP POST requests
+- Basic understanding of HTTP POST requests
 
 Keep this section short.
 
@@ -251,17 +307,16 @@ Keep this section short.
 
 A simple diagram or bullet list showing:
 
-* Chargebee sends events to the Event Gateway
+- Chargebee sends events to the Event Gateway
 
-* The Event Gateway authenticates, records, and forwards them
+- The Event Gateway authenticates, records, and forwards them
 
-* Each **Connection** forwards specific event types to its destination:
+- Each **Connection** forwards specific event types to its destination:
+  - Customer updates
 
-  * Customer updates
+  - Subscription changes
 
-  * Subscription changes
-
-  * Successful payments
+  - Successful payments
 
 ### 4. Step 1 — Programmatically Create the Chargebee Webhook Endpoint
 
@@ -269,33 +324,32 @@ Use the Chargebee **Webhook Endpoints API** to create the webhook.
 
 The script should:
 
-* Create the webhook endpoint
+- Create the webhook endpoint
 
-* Configure Basic Auth credentials
+- Configure Basic Auth credentials
 
-* Subscribe to these event types:
+- Subscribe to these event types:
+  - customer_created
 
-  * customer_created
+  - customer_changed
 
-  * customer_changed
+  - subscription_created
 
-  * subscription_created
+  - subscription_renewed
 
-  * subscription_renewed
+  - subscription_changed
 
-  * subscription_changed
+  - payment_succeeded
 
-  * payment_succeeded
-
-* Make setup **idempotent** so it can be re-run safely across environments
+- Make setup **idempotent** so it can be re-run safely across environments
 
 Benefits:
 
-* No manual config drift
+- No manual config drift
 
-* Repeatable infrastructure setup
+- Repeatable infrastructure setup
 
-* Clear, auditable webhook definitions
+- Clear, auditable webhook definitions
 
 ### 5. Step 2 — Programmatically Create Hookdeck Event Gateway Connections
 
@@ -303,39 +357,39 @@ Create three Connections:
 
 ### **Customer Connection**
 
-* Source: Chargebee
+- Source: Chargebee
 
-* Filter: event_type starts with customer_
+- Filter: event*type starts with customer*
 
-* Destination: /webhooks/chargebee/customer
+- Destination: /webhooks/chargebee/customer
 
   ### **Subscription Connection**
 
-* Filter: event_type starts with subscription_
+- Filter: event*type starts with subscription*
 
-* Destination: /webhooks/chargebee/subscription
+- Destination: /webhooks/chargebee/subscription
 
   ### **Payments Connection**
 
-* Filter: event_type = payment_succeeded
+- Filter: event_type = payment_succeeded
 
-* Destination: /webhooks/chargebee/payments
+- Destination: /webhooks/chargebee/payments
 
 All Connection setup:
 
-* Is done through the Event Gateway API
+- Is done through the Event Gateway API
 
-* Must be idempotent
+- Must be idempotent
 
-* Supports DEV, Staging, Prod environment patterns
+- Supports DEV, Staging, Prod environment patterns
 
 Benefits:
 
-* Clean separation of concerns
+- Clean separation of concerns
 
-* Minimal, focused handlers
+- Minimal, focused handlers
 
-* Easier testing and reliability
+- Easier testing and reliability
 
 ### 6. Step 3 — Implement Minimal Handlers for Each Workflow
 
@@ -345,11 +399,11 @@ Endpoint: /webhooks/chargebee/customer
 
 Handles:
 
-* Syncing customer profile changes
+- Syncing customer profile changes
 
-* Updating internal CRM/user tables
+- Updating internal CRM/user tables
 
-* Applying metadata changes
+- Applying metadata changes
 
   ### **Subscription Handler**
 
@@ -357,13 +411,13 @@ Endpoint: /webhooks/chargebee/subscription
 
 Handles:
 
-* Provisioning on creation
+- Provisioning on creation
 
-* Updating entitlements on plan changes
+- Updating entitlements on plan changes
 
-* Extending access on renewal
+- Extending access on renewal
 
-* Processing metadata changes
+- Processing metadata changes
 
   ### **Payments Handler**
 
@@ -371,94 +425,92 @@ Endpoint: /webhooks/chargebee/payments
 
 Handles:
 
-* Renewal confirmation
+- Renewal confirmation
 
-* Revenue/metrics updates
+- Revenue/metrics updates
 
-* Clearing “pending renewal” flags
+- Clearing “pending renewal” flags
 
 Notes:
 
-* Developers are responsible for idempotency
+- Developers are responsible for idempotency
 
-* Event Gateway reduces retry noise but apps must use event.id
+- Event Gateway reduces retry noise but apps must use event.id
 
-* Code samples should be small and runnable
+- Code samples should be small and runnable
 
 ### 7. Step 4 — Testing the Flow End-to-End
 
-* Trigger test events from Chargebee
+- Trigger test events from Chargebee
 
-* Confirm they arrive in the Event Gateway
+- Confirm they arrive in the Event Gateway
 
-* Confirm correct Connection routing
+- Confirm correct Connection routing
 
-* Confirm delivery to the correct handler
+- Confirm delivery to the correct handler
 
 Screenshots:
 
-* Event Gateway delivery logs
+- Event Gateway delivery logs
 
-* Example payload
+- Example payload
 
 ### 8. Step 5 — Observability, Debugging, and Replay
 
 Show how to use the Event Gateway dashboard to:
 
-* Inspect event payloads
+- Inspect event payloads
 
-* View delivery attempts and status codes
+- View delivery attempts and status codes
 
-* Simulate backend downtime
+- Simulate backend downtime
 
-* Replay missed events
+- Replay missed events
 
 Benefits:
 
-* No lost updates
+- No lost updates
 
-* Faster debugging
+- Faster debugging
 
-* Full lifecycle visibility
+- Full lifecycle visibility
 
 ### 9. Step 6 — Monitoring & Alerting
 
 Show how to configure alerts for:
 
-* Repeated 4XX/5XX failures
+- Repeated 4XX/5XX failures
 
-* Latency spikes
+- Latency spikes
 
-* Delivery queue thresholds
+- Delivery queue thresholds
 
 Benefits:
 
-* Proactive reliability
+- Proactive reliability
 
-* Early detection of webhook integration issues
+- Early detection of webhook integration issues
 
 ### 10. Wrap-Up and Extensions
 
 Optional extension ideas:
 
-* Handling invoice events
+- Handling invoice events
 
-* Forwarding events to analytics/CRM systems
+- Forwarding events to analytics/CRM systems
 
-* Adding transformations for data redaction/enrichment
+- Adding transformations for data redaction/enrichment
 
-* Running multi-environment setups reliably
+- Running multi-environment setups reliably
 
 ### 11. Additional Resources
 
 Links to:
 
-* Chargebee Events API docs
+- Chargebee Events API docs
 
-* Chargebee Webhook Endpoints API
+- Chargebee Webhook Endpoints API
 
-* Hookdeck Event Gateway docs
+- Hookdeck Event Gateway docs
 
-* Example repos (if included)
-
-  
+- Example repos (if included)
