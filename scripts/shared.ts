@@ -69,6 +69,44 @@ export interface ChargebeeWebhookEndpoint {
   webhook_events?: string[];
 }
 
+// Essential event types for tutorial examples
+export const ESSENTIAL_WEBHOOK_EVENTS = [
+  "customer_created",
+  "customer_changed",
+  "subscription_created",
+  "subscription_renewed",
+  "subscription_changed",
+  "payment_succeeded",
+] as const;
+
+// Complete list of webhook events used in production
+export const ALL_WEBHOOK_EVENTS = [
+  // Customer events
+  "customer_created",
+  "customer_updated",
+  "customer_deleted",
+  "customer_changed",
+  "customer_moved_in",
+  "customer_moved_out",
+  // Subscription events
+  "subscription_created",
+  "subscription_started",
+  "subscription_activated",
+  "subscription_changed",
+  "subscription_cancelled",
+  "subscription_reactivated",
+  "subscription_renewed",
+  "subscription_scheduled_cancellation_removed",
+  "subscription_changes_scheduled",
+  "subscription_scheduled_changes_removed",
+  "subscription_shipping_address_updated",
+  "subscription_deleted",
+  "subscription_paused",
+  "subscription_resumed",
+  // Payment events
+  "payment_succeeded",
+] as const;
+
 // Utility functions
 export function getEnvVar(name: string): string {
   const value = process.env[name];

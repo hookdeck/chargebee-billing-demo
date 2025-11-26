@@ -13,6 +13,7 @@ import {
   PROJECT_SOURCE_NAME,
   PROJECT_CONNECTION_NAMES,
   PROJECT_DESTINATION_NAMES,
+  ALL_WEBHOOK_EVENTS,
 } from "./shared";
 
 dotenv.config();
@@ -99,32 +100,7 @@ async function updateChargebeeWebhookEndpoint(
 
   const auth = Buffer.from(`${apiKey}:`).toString("base64");
 
-  const eventTypes = [
-    // Customer events
-    "customer_created",
-    "customer_updated",
-    "customer_deleted",
-    "customer_changed",
-    "customer_moved_in",
-    "customer_moved_out",
-    // Subscription events
-    "subscription_created",
-    "subscription_started",
-    "subscription_activated",
-    "subscription_changed",
-    "subscription_cancelled",
-    "subscription_reactivated",
-    "subscription_renewed",
-    "subscription_scheduled_cancellation_removed",
-    "subscription_changes_scheduled",
-    "subscription_scheduled_changes_removed",
-    "subscription_shipping_address_updated",
-    "subscription_deleted",
-    "subscription_paused",
-    "subscription_resumed",
-    // Payment events
-    "payment_succeeded",
-  ];
+  const eventTypes = [...ALL_WEBHOOK_EVENTS];
 
   await makeHttpRequest(
     `https://${siteName}.chargebee.com/api/v2/webhook_endpoints/${endpointId}`,
@@ -157,32 +133,7 @@ async function createChargebeeWebhookEndpoint(
 
   const auth = Buffer.from(`${apiKey}:`).toString("base64");
 
-  const eventTypes = [
-    // Customer events
-    "customer_created",
-    "customer_updated",
-    "customer_deleted",
-    "customer_changed",
-    "customer_moved_in",
-    "customer_moved_out",
-    // Subscription events
-    "subscription_created",
-    "subscription_started",
-    "subscription_activated",
-    "subscription_changed",
-    "subscription_cancelled",
-    "subscription_reactivated",
-    "subscription_renewed",
-    "subscription_scheduled_cancellation_removed",
-    "subscription_changes_scheduled",
-    "subscription_scheduled_changes_removed",
-    "subscription_shipping_address_updated",
-    "subscription_deleted",
-    "subscription_paused",
-    "subscription_resumed",
-    // Payment events
-    "payment_succeeded",
-  ];
+  const eventTypes = [...ALL_WEBHOOK_EVENTS];
 
   await makeHttpRequest(
     `https://${siteName}.chargebee.com/api/v2/webhook_endpoints`,
