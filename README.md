@@ -90,20 +90,20 @@ PROD_DESTINATION_URL=https://your-production-domain.com
 
 For local development with Hookdeck CLI:
 
-1. **Install and authenticate the Hookdeck CLI** (if not already done):
-
-```bash
-npm install -g hookdeck-cli
-hookdeck login
-```
-
-2. **Create the webhook connections**:
+1. **Create the webhook connections**:
 
 ```bash
 npm run connections:upsert:dev
 ```
 
 This configures Hookdeck to forward webhooks to your local development server via the CLI.
+
+2. **Install and authenticate the Hookdeck CLI**:
+
+```bash
+npm install -g hookdeck-cli
+hookdeck login
+```
 
 3. **Start the Hookdeck CLI** to forward events to your local server:
 
@@ -226,7 +226,7 @@ If you prefer manual setup:
 2. Install the Hookdeck CLI:
 
 ```bash
-npm install -g @hookdeck/cli
+npm install -g hookdeck-cli
 ```
 
 3. Authenticate the CLI:
@@ -345,3 +345,4 @@ While Hookdeck reduces duplicate delivery through its retry mechanisms, network 
 ## License
 
 MIT
+

@@ -25,6 +25,7 @@ Chargebee → Hookdeck Event Gateway → Application Endpoints
 - Hookdeck account ([sign up](https://dashboard.hookdeck.com/signup))
 - Node.js v18 or later
 - Basic understanding of webhooks and HTTP
+- Hookdeck CLI installed and authenticated (for local development)
 
 ### Clone the Repository
 
@@ -473,7 +474,16 @@ Start the Express server:
 npm run dev
 ```
 
-In a separate terminal, start the Hookdeck CLI to forward events to your local server:
+### Install and Authenticate the Hookdeck CLI
+
+In a separate terminal, install and authenticate the Hookdeck CLI:
+
+```bash
+npm install -g hookdeck-cli
+hookdeck login
+```
+
+Once installed and logged in, start the Hookdeck CLI to forward events to your local server:
 
 ```bash
 hookdeck listen 4000 chargebee
