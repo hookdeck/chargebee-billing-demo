@@ -543,3 +543,58 @@ Common issues and solutions:
 - **Event not routed**: Check Connection filter rules in the Hookdeck dashboard. Verify that the event type matches your filter patterns (`customer_`, `subscription_`, `payment_succeeded`).
 - **Handler errors**: Check application logs for error messages. Verify that the handler is correctly extracting data from the payload structure.
 - **Authentication issues**: Confirm that the Basic Auth credentials in your `.env` file match what you configured in Hookdeck and Chargebee. Check that Hookdeck signature verification middleware is configured correctly.
+
+## Using the Hookdeck CLI During Development
+
+When developing locally, the Hookdeck CLI provides an interactive terminal interface for real-time event inspection and retry capabilities. This streamlines your development workflow by letting you debug webhook handlers quickly without repeatedly triggering new events from Chargebee.
+
+The CLI displays events in an interactive list as they flow from Chargebee through the Event Gateway to your local handlers. Navigate through events using keyboard shortcuts, press `d` to inspect full payloads and response details, and use `r` to retry events directly to your current handler code. This creates a fast debugging cycle: inspect an event, update your handler code, retry the event, and verify the fix—all without leaving your terminal.
+
+Testing with real Chargebee event data means your handlers encounter the exact field structure, edge cases, and data variations they'll handle in production. The convenience of retrying events directly from your terminal keeps you in your development environment, avoiding context switches to the Chargebee dashboard.
+
+For full command documentation, keyboard shortcuts, and advanced CLI features, see the [Hookdeck CLI documentation](https://hookdeck.com/docs/cli).
+
+## Tips and Best Practices
+
+Follow these practices to build reliable and maintainable webhook integrations:
+
+- **Idempotency**: Your handlers should handle duplicate events safely. Store processed event IDs in your database and check against this list before performing operations. Use the `id` field from the Chargebee webhook payload as your deduplication key. Even though the Event Gateway reduces duplicate delivery, network issues or application restarts can cause the same event to be delivered multiple times.
+
+- **Monitoring**: Set up Issue Triggers for critical Connections to receive alerts when delivery fails. Configure Issue Triggers for your subscription and payment Connections first, as these directly impact revenue and customer access. See the [Hookdeck Issues documentation](https://hookdeck.com/docs/issues) for configuration details.
+
+- **Delivery Rate Management**: Configure destination rate limits to prevent overwhelming your servers during high-traffic periods. Set maximum delivery rates that match your application's processing capacity. For details on configuring rate limits, see the [Hookdeck Destinations documentation](https://hookdeck.com/docs/destinations).
+
+- **Event Retries**: Use the dashboard or API for bulk retry operations when recovering from handler failures or application downtime. After resolving issues, retry failed events to complete missed operations. Learn more in the [Hookdeck Retries documentation](https://hookdeck.com/docs/retries).
+
+- **Testing**: Always test with Chargebee's test site before deploying to production. Create test customers, subscriptions, and payments to verify your handlers work correctly with real event structures. Testing in Chargebee's test environment prevents errors from affecting actual customer data.
+
+## Conclusion
+
+You've built a reliable webhook integration that handles Chargebee subscription, customer, and payment events. The setup provides automatic webhook routing to focused handlers, reliable event delivery with retries, and duplicate detection for safe processing. Your handlers focus on specific business workflows without mixing concerns.
+
+Chargebee's webhook system delivers events that trigger critical business operations—provisioning access, syncing customer data, and tracking revenue. The Hookdeck Event Gateway manages webhook infrastructure by routing events based on type, ensuring that customer events reach the customer handler, subscription events reach the subscription handler, and payment events reach the payment handler. This separation keeps your code maintainable as you add more event types and workflows.
+
+You tested the complete flow from Chargebee through the Event Gateway to your local handlers, verifying that events are authenticated, routed correctly, and processed successfully. The Hookdeck CLI provides real-time inspection and retry capabilities for efficient local development.
+
+### Next Steps
+
+Explore the complete implementation in the [example repository](https://github.com/hookdeck/chargebee-billing-demo) to see production-ready handler code with detailed logging and error handling.
+
+Continue building on this foundation:
+
+- **Add more event types**: Expand your integration to handle additional Chargebee events like subscription cancellations, trial conversions, or refund processing
+- **Implement additional workflows**: Build automated email notifications, analytics tracking, or third-party system integrations triggered by Chargebee webhook events
+- **Set up monitoring**: Configure Issue Triggers and notification channels to stay informed about integration health and delivery failures
+
+Learn more about Chargebee's webhook capabilities in the [Chargebee documentation](https://apidocs.chargebee.com/docs/api/events) and explore Event Gateway features in the [Hookdeck documentation](https://hookdeck.com/docs).
+
+## Additional Resources
+
+- [Chargebee Events API Documentation](https://apidocs.chargebee.com/docs/api/events)
+- [Chargebee Webhook Endpoints API](https://apidocs.chargebee.com/docs/api/webhook_endpoints)
+- [Hookdeck Event Gateway Documentation](https://hookdeck.com/docs)
+- [Hookdeck CLI Documentation](https://hookdeck.com/docs/cli)
+- [Hookdeck Issues and Alerting](https://hookdeck.com/docs/issues)
+- [Hookdeck Retries Documentation](https://hookdeck.com/docs/retries)
+- [Hookdeck Destinations Documentation](https://hookdeck.com/docs/destinations)
+- [Example Repository](https://github.com/hookdeck/chargebee-billing-demo)
