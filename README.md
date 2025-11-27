@@ -238,7 +238,7 @@ hookdeck login
 4. Create a connection to forward Chargebee webhooks to your local server:
 
 ```bash
-hookdeck listen 4000 --source chargebee
+hookdeck listen 4000 chargebee
 ```
 
 5. Copy the webhook URL provided by Hookdeck and manually configure it in your Chargebee dashboard under Settings > API Keys & Webhooks > Webhooks
